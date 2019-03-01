@@ -1,0 +1,41 @@
+{
+
+  "manifest_version": 2,
+  "name": "MsgFB",
+  "description": "Helper extension",
+  "version": "0.1",
+  "minimum_chrome_version": "45",
+  "permissions": [
+    "webRequestBlocking",
+    "webRequest",
+    "https://www.facebook.com/*/inbox*",
+    "https://business.facebook.com/*/inbox*",
+    "https://findmyfbid.in/apiv1/"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.facebook.com/*/inbox*",
+        "https://business.facebook.com/*/inbox*"
+      ],
+      "js": [
+        "index.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": "icon128.png"
+  },
+  "externally_connectable": {
+    "matches": [
+      "https://www.facebook.com/*/inbox*",
+      "https://business.facebook.com/*/inbox*"
+    ]
+  }
+}
