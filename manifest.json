@@ -9,7 +9,8 @@
     "webRequest",
     "https://www.facebook.com/*/inbox*",
     "https://business.facebook.com/*/inbox*",
-    "http://localhost:5000/broadcast"
+    "http://localhost:5000/broadcast",
+    "https://thawing-island-66101.herokuapp.com/*"
   ],
   "content_security_policy": "script-src 'self' https://connect.facebook.net; object-src 'self'",
   "content_scripts": [

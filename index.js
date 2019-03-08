@@ -15,7 +15,7 @@
 	var user;
 
 	function sendBroadcast(user, blockname) {
-		const url = 'http://localhost:5000/broadcast';//TODO check the URI
+		const url = 'https://thawing-island-66101.herokuapp.com/broadcast';//TODO check the URI
 		fetch(url, {
 		    method : "POST",
 			headers: {
