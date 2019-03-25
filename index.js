@@ -16,12 +16,17 @@
 
 	function sendBroadcast(user, blockname) {
 		const url = 'https://thawing-island-66101.herokuapp.com/broadcast';//TODO check the URI
+		// const url = 'http://localhost:5000';
+		console.log(user,blockname);
 		fetch(url, {
 		    method : "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({"pageid": user})
+			body: JSON.stringify({
+				"pageid": user,
+				"blockname": blockname
+			})
 		}).then(
 		    response => {
 		    	if (response.ok) {
@@ -54,21 +59,24 @@
 		).catch(err => console.log(err));
 	}
 
+	function createButton(name) {
+		let btn = document.createElement('button');
+		let textnode = document.createTextNode(name);
+		btn.setAttribute('class','btn-chatbotex');
+		btn.setAttribute('id', name);
+		btn.appendChild(textnode);
+		return btn
+	}
+
 	function createArea() {
-		const area = document.querySelector('#content');
+		const area = document.querySelector('#globalContainer');
 		const div = document.createElement('div');
-		const button = document.createElement('button');
-		const button2 = document.createElement('button');
-		const textnode = document.createTextNode('Send 1st block');
-		const textnode2 = document.createTextNode('Send 2nd block');
 		div.setAttribute("id", "area");
-		button.setAttribute("class", "btn-chatbotex");
-		button2.setAttribute("class", "btn-chatbotex");
 		area.appendChild(div);
-		div.appendChild(button);
-		div.appendChild(button2);
-		button.appendChild(textnode);
-		button2.appendChild(textnode2);
+		div.appendChild(createButton('test'));
+		div.appendChild(createButton('broadcast'));
+		div.appendChild(createButton('with space'));
+		// div.innerHTML = createElements()
 	}
 
 	//helper func
@@ -88,25 +96,20 @@
 			// listen for messages sent from background.js
 			if (request.message === 'hello!') {
 				const urlParams = new URLSearchParams(request.url);
-				const myParam = urlParams.get('selected_item_id');
-				console.log(myParam);
-				user = myParam;
+				user = urlParams.get('selected_item_id');
+				console.log(user)
 			}
 		});
 
 	window.onload = () => {
 		createArea();
-		const buttons = document.querySelectorAll('.btn-chatbotex');
-		if (buttons.length > 0){
-			const btn1 = buttons[0];
-			const btn2 = buttons[1];
-			btn1.addEventListener('click',()=>{
-				sendBroadcast(user,'broadcast')
-			});
-			btn2.addEventListener('click',()=>{
-				sendBroadcast(user,'test')
-			})
-		}
+		const area = document.querySelector('#area');
+
+		area.addEventListener('click',event => {
+			if ( event.target.classList.contains( 'btn-chatbotex' ) ) {
+				sendBroadcast(user,event.target.innerText)
+			}
+		});
 	}
 })();
 
