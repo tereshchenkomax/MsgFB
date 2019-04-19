@@ -39,5 +39,8 @@
       "https://www.facebook.com/*/inbox*",
       "https://business.facebook.com/*/inbox*"
     ]
-  }
+  },
+  "web_accessible_resources": [
+    "settings.json"
+  ]
 }

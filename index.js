@@ -1,25 +1,13 @@
 (() => {
 
-	// function find_link_by_href() {
-	// 	const regexFB = /^(?:https?:\/\/)?(?:www\.)?(?:facebook|fb|m\.facebook)\.(?:com|me)\/(?:(?:\w)*#!\/)?(?:[\w\-]*\/)*([\w\-\.]+)$/
-	// 	let links = [...document.querySelectorAll("a")];
-	// 	let filteredLink = links.filter(link =>{
-	// 		if (regexFB.test(link.href) && link.innerHTML === 'View Profile') {
-	// 			return link
-	// 		}
-	// 		return null;
-	// 	});
-	// 	return filteredLink[0].href
-	// }
-	//
 	var user;
 
 	function sendBroadcast(user, blockname) {
 		const url = 'https://thawing-island-66101.herokuapp.com/broadcast';//TODO check the URI
 		// const url = 'http://localhost:5000';
-		console.log(user,blockname);
+		console.log(user, blockname);
 		fetch(url, {
-		    method : "POST",
+			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -28,10 +16,12 @@
 				"blockname": blockname
 			})
 		}).then(
-		    response => {
-		    	if (response.ok) {
+			response => {
+				if (response.ok) {
 					// you can call response.json() here too if you want to return json
 					console.log('everything is OK')
+					const btn = document.querySelector(`#${blockname}`);
+					btn.setAttribute('color','green');
 					//TODO change the color or smth
 				} else {
 					//handle errors in the way you want to
@@ -52,17 +42,16 @@
 							console.log('Some error occured');
 							//TODO change the color or smth
 							break;
-					}}
+					}
+				}
 			} // .json(), etc.
-		).then(
-		    res => console.log(res)
 		).catch(err => console.log(err));
 	}
 
 	function createButton(name) {
 		let btn = document.createElement('button');
 		let textnode = document.createTextNode(name);
-		btn.setAttribute('class','btn-chatbotex');
+		btn.setAttribute('class', 'btn-chatbotex');
 		btn.setAttribute('id', name);
 		btn.appendChild(textnode);
 		return btn
@@ -71,24 +60,26 @@
 	function createArea() {
 		const area = document.querySelector('#globalContainer');
 		const div = document.createElement('div');
-		div.setAttribute("id", "area");
+		div.setAttribute('id', 'area');
 		area.appendChild(div);
-		div.appendChild(createButton('test'));
-		div.appendChild(createButton('broadcast'));
-		div.appendChild(createButton('with space'));
-		// div.innerHTML = createElements()
 	}
 
-	//helper func
-	function whenAvailable(node, callback) {
-		const interval = 100; // ms
-		window.setTimeout(function () {
-			if (node) {
-				callback(node);
-			} else {
-				window.setTimeout(arguments.callee, interval);
-			}
-		}, interval);
+	function loopThroughSettings({buttons}) {
+		const div = document.querySelector('#area');
+		if (buttons && buttons.length > 0){
+			buttons.forEach(btn =>{
+				div.appendChild(createButton(btn));
+			})
+		}
+	}
+
+	function getJSONsettings() {
+		const url = chrome.runtime.getURL('settings.json');
+
+		fetch(url)
+			.then((response) => response.json()) //assuming file contains json
+			.then((json) => loopThroughSettings(json))
+			.catch(err => console.log(err))
 	}
 
 	chrome.runtime.onMessage.addListener(
@@ -103,11 +94,12 @@
 
 	window.onload = () => {
 		createArea();
+		getJSONsettings();
 		const area = document.querySelector('#area');
 
-		area.addEventListener('click',event => {
-			if ( event.target.classList.contains( 'btn-chatbotex' ) ) {
-				sendBroadcast(user,event.target.innerText)
+		area.addEventListener('click', event => {
+			if (event.target.classList.contains('btn-chatbotex')) {
+				sendBroadcast(user, event.target.innerText)
 			}
 		});
 	}
