@@ -9,6 +9,7 @@
 		fetch(url, {
 			method: "POST",
 			headers: {
+				"Access-Control-Allow-Origin": "*",
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
@@ -21,7 +22,6 @@
 					// you can call response.json() here too if you want to return json
 					console.log('everything is OK')
 					const btn = document.querySelector(`#${blockname}`);
-					btn.setAttribute('color','green');
 					//TODO change the color or smth
 				} else {
 					//handle errors in the way you want to
@@ -64,6 +64,15 @@
 		area.appendChild(div);
 	}
 
+	function getJSONsettings() {
+		const url = chrome.runtime.getURL('settings.json');
+
+		fetch(url)
+			.then((response) => response.json()) //assuming file contains json
+			.then((json) => loopThroughSettings(json))
+			.catch(err => console.log(err))
+	}
+
 	function loopThroughSettings({buttons}) {
 		const div = document.querySelector('#area');
 		if (buttons && buttons.length > 0){
@@ -73,13 +82,12 @@
 		}
 	}
 
-	function getJSONsettings() {
-		const url = chrome.runtime.getURL('settings.json');
-
-		fetch(url)
-			.then((response) => response.json()) //assuming file contains json
-			.then((json) => loopThroughSettings(json))
-			.catch(err => console.log(err))
+	function makeDisabled(btn){
+		btn.setAttribute('class','disabled');
+		setTimeout(() => {
+			btn.setAttribute('class', 'btn-chatbotex');
+		}
+		,1500);
 	}
 
 	chrome.runtime.onMessage.addListener(
@@ -99,7 +107,8 @@
 
 		area.addEventListener('click', event => {
 			if (event.target.classList.contains('btn-chatbotex')) {
-				sendBroadcast(user, event.target.innerText)
+				sendBroadcast(user, event.target.innerText); //TODO turn on
+				makeDisabled(event.target);
 			}
 		});
 	}
