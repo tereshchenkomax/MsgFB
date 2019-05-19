@@ -1,5 +1,5 @@
 {
-  "buttons": [
+  "1st category": [
     "Welcome msg short",
     "Skincare",
     "makeup",
@@ -14,5 +14,9 @@
     "Before - After",
     "V - wrinkles",
     "unsubscription"
+  ],
+  "shades": [
+    "shades 4 5 6",
+    "shades 6 5 7"
   ]
 }

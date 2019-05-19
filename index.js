@@ -52,9 +52,17 @@
 		let btn = document.createElement('button');
 		let textnode = document.createTextNode(name);
 		btn.setAttribute('class', 'btn-chatbotex');
-		btn.setAttribute('id', name);
+		btn.setAttribute('id', name.replace(/\s/g, ''));
 		btn.appendChild(textnode);
 		return btn
+	}
+
+	function createLink(name) {
+		let link = document.createElement('a');
+		let textnode = document.createTextNode(name);
+		link.setAttribute('class', 'dropdown-link');
+		link.appendChild(textnode);
+		return link
 	}
 
 	function createArea() {
@@ -73,21 +81,39 @@
 			.catch(err => console.log(err))
 	}
 
-	function loopThroughSettings({buttons}) {
-		const div = document.querySelector('#area');
-		if (buttons && buttons.length > 0){
-			buttons.forEach(btn =>{
-				div.appendChild(createButton(btn));
+	function loopThroughSettings(categories) {
+		const area = document.querySelector('#area');
+		const cats = Object.keys(categories);
+		if (cats && cats.length > 0) {
+			cats.forEach(btn => {
+				let button = area.appendChild(createButton(btn));
+				let div = document.createElement('div');
+				div.setAttribute('class', 'dropdown-content');
+				button.appendChild(div);
+				categories[btn].forEach(link => {
+					div.appendChild(createLink(link));
+				});
 			})
 		}
 	}
 
-	function makeDisabled(btn){
-		btn.setAttribute('class','disabled');
+	function makeDisabled(btn) {
+		btn.setAttribute('class', 'disabled');
 		setTimeout(() => {
-			btn.setAttribute('class', 'btn-chatbotex');
+				btn.setAttribute('class', 'dropdown-link');
+			}
+			, 1500);
+	}
+
+	function closeDropdown(event) {
+		let dropdowns = document.getElementsByClassName("dropdown-content");
+		for (let i = 0; i < dropdowns.length; i++) {
+			var openDropdown = dropdowns[i];
+			if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+			}
 		}
-		,1500);
+
 	}
 
 	chrome.runtime.onMessage.addListener(
@@ -106,9 +132,14 @@
 		const area = document.querySelector('#area');
 
 		area.addEventListener('click', event => {
-			if (event.target.classList.contains('btn-chatbotex')) {
-				sendBroadcast(user, event.target.innerText); //TODO turn on
+			if (event.target.classList.contains('dropdown-link')) {
+				sendBroadcast(user, event.target.innerText);
+				closeDropdown(event);
 				makeDisabled(event.target);
+			} else if (event.target.classList.contains('btn-chatbotex')) {
+				document.getElementById(event.target.innerText.replace(/\s/g, '')).children[0].classList.toggle("show");
+			} else {
+				closeDropdown(event);
 			}
 		});
 	}
