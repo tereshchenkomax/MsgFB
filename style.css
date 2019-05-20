@@ -1,17 +1,21 @@
 .btn-chatbotex {
-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-color: white;
-background: rgb(66, 184, 221);
-padding: 6px;
-border-radius: 10px;
-}
-
-.disabled{
-    pointer-events: none;
-    background: rgb(65, 221, 111);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    color: white;
+    background: rgb(66, 184, 221);
     padding: 6px;
     border-radius: 10px;
+}
+
+.btn-area {
+    padding: 7px 20px;
+    background-image: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.disabled {
+    padding: 7px 20px;
+    background-image: linear-gradient(0.25turn, #27475b, #8c9889, #c17633);
+    pointer-events: none;
 }
 
 .dropdown {
@@ -25,7 +29,7 @@ border-radius: 10px;
     background-color: #f1f1f1;
     min-width: 160px;
     overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -36,9 +40,13 @@ border-radius: 10px;
     display: block;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown a:hover {
+    background-color: #ddd;
+}
 
-.show {display: block;}
+.show {
+    display: block;
+}
 
 #area {
     position: absolute;
@@ -54,9 +62,9 @@ border-radius: 10px;
     height: -webkit-fill-available;
     max-height: 86vh;
     background: #e9ebee;
-    z-index: 999;
+    z-index: 3;
 }
 
-#content{
+#content {
     max-width: 90%;
 }

@@ -20,8 +20,7 @@
 			response => {
 				if (response.ok) {
 					// you can call response.json() here too if you want to return json
-					console.log('everything is OK')
-					const btn = document.querySelector(`#${blockname}`);
+					console.log('everything is OK');
 					//TODO change the color or smth
 				} else {
 					//handle errors in the way you want to
@@ -51,10 +50,21 @@
 	function createButton(name) {
 		let btn = document.createElement('button');
 		let textnode = document.createTextNode(name);
-		btn.setAttribute('class', 'btn-chatbotex');
 		btn.setAttribute('id', name.replace(/\s/g, ''));
 		btn.appendChild(textnode);
-		return btn
+		return btn;
+	}
+
+	function createButtonForDropdown(name) {
+		let btn = createButton(name);
+		btn.setAttribute('class', 'btn-chatbotex');
+		return btn;
+	}
+
+	function createButtonForArea(name) {
+		let btn = createButton(name);
+		btn.setAttribute('class', 'btn-area');
+		return btn;
 	}
 
 	function createLink(name) {
@@ -62,7 +72,7 @@
 		let textnode = document.createTextNode(name);
 		link.setAttribute('class', 'dropdown-link');
 		link.appendChild(textnode);
-		return link
+		return link;
 	}
 
 	function createArea() {
@@ -81,16 +91,22 @@
 			.catch(err => console.log(err))
 	}
 
-	function loopThroughSettings(categories) {
+	function loopThroughSettings(settings) {
 		const area = document.querySelector('#area');
-		const cats = Object.keys(categories);
+		const cats = Object.keys(settings.categories);
+		const btns = settings.buttons;
+		if (btns && cats.length > 0) {
+			btns.forEach(btn => {
+				area.appendChild(createButtonForArea(btn));
+			})
+		}
 		if (cats && cats.length > 0) {
 			cats.forEach(btn => {
-				let button = area.appendChild(createButton(btn));
+				let button = area.appendChild(createButtonForDropdown(btn));
 				let div = document.createElement('div');
 				div.setAttribute('class', 'dropdown-content');
 				button.appendChild(div);
-				categories[btn].forEach(link => {
+				settings.categories[btn].forEach(link => {
 					div.appendChild(createLink(link));
 				});
 			})
@@ -100,7 +116,7 @@
 	function makeDisabled(btn) {
 		btn.setAttribute('class', 'disabled');
 		setTimeout(() => {
-				btn.setAttribute('class', 'dropdown-link');
+				btn.setAttribute('class', 'btn-area');
 			}
 			, 1500);
 	}
@@ -132,7 +148,7 @@
 		const area = document.querySelector('#area');
 
 		area.addEventListener('click', event => {
-			if (event.target.classList.contains('dropdown-link')) {
+			if (event.target.classList.contains('dropdown-link') || event.target.classList.contains('btn-area')) {
 				sendBroadcast(user, event.target.innerText);
 				closeDropdown(event);
 				makeDisabled(event.target);
