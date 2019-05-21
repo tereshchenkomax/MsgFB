@@ -113,12 +113,18 @@
 
 	}
 
-	function makeDisabled(btn) {
-		btn.setAttribute('class', 'disabled');
-		setTimeout(() => {
-				btn.setAttribute('class', 'btn-area');
-			}
-			, 1500);
+	function makeDisabled(element) {
+		if (element.className === 'dropdown-link'){
+			element.setAttribute('class', 'dropdown-sent');
+			setTimeout(() => {
+					element.setAttribute('class', 'dropdown-link');
+				}, 1500);
+		} else {
+			element.setAttribute('class', 'disabled');
+			setTimeout(() => {
+					element.setAttribute('class', 'btn-area');
+				}, 1500);
+		}
 	}
 
 	function closeDropdown(event) {
