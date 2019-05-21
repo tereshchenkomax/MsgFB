@@ -84,7 +84,6 @@
 
 	function getJSONsettings() {
 		const url = chrome.runtime.getURL('settings.json');
-
 		fetch(url)
 			.then((response) => response.json()) //assuming file contains json
 			.then((json) => loopThroughSettings(json))
@@ -95,11 +94,6 @@
 		const area = document.querySelector('#area');
 		const cats = Object.keys(settings.categories);
 		const btns = settings.buttons;
-		if (btns && cats.length > 0) {
-			btns.forEach(btn => {
-				area.appendChild(createButtonForArea(btn));
-			})
-		}
 		if (cats && cats.length > 0) {
 			cats.forEach(btn => {
 				let button = area.appendChild(createButtonForDropdown(btn));
@@ -111,6 +105,12 @@
 				});
 			})
 		}
+		if (btns && cats.length > 0) {
+			btns.forEach(btn => {
+				area.appendChild(createButtonForArea(btn));
+			})
+		}
+
 	}
 
 	function makeDisabled(btn) {
@@ -153,7 +153,7 @@
 				closeDropdown(event);
 				makeDisabled(event.target);
 			} else if (event.target.classList.contains('btn-chatbotex')) {
-				document.getElementById(event.target.innerText.replace(/\s/g, '')).children[0].classList.toggle("show");
+				document.getElementById(event.target.id).children[0].classList.toggle("show");
 			} else {
 				closeDropdown(event);
 			}

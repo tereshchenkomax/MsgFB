@@ -1,14 +1,6 @@
 {
-  "buttons": [
-    "1st one",
-    "2nd one"
-  ],
   "categories": {
-    "1st category": [
-      "Welcome msg short",
-      "Skincare",
-      "makeup",
-      "Both",
+    "Products": [
       "Product Info",
       "ESC Kit",
       "BFF Kit",
@@ -24,5 +16,13 @@
       "shades 4 5 6",
       "shades 6 5 7"
     ]
-  }
+  },
+  "buttons": [
+    "Welcome msg short",
+    "FM start",
+    "Skincare",
+    "makeup",
+    "Both",
+    "2nd one"
+  ]
 }
