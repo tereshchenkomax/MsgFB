@@ -159,6 +159,7 @@
 				closeDropdown(event);
 				makeDisabled(event.target);
 			} else if (event.target.classList.contains('btn-chatbotex')) {
+				closeDropdown(event);
 				document.getElementById(event.target.id).children[0].classList.toggle("show");
 			} else {
 				closeDropdown(event);
