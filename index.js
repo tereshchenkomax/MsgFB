@@ -3,7 +3,7 @@
 	var user;
 
 	function sendBroadcast(user, blockname) {
-		const url = 'https://thawing-island-66101.herokuapp.com/broadcast';//TODO check the URI
+		const url = 'https://inbox-enhancer.herokuapp.com/broadcast';//TODO check the URI
 		// const url = 'http://localhost:5000';
 		console.log(user, blockname);
 		fetch(url, {
@@ -155,9 +155,11 @@
 
 		area.addEventListener('click', event => {
 			if (event.target.classList.contains('dropdown-link') || event.target.classList.contains('btn-area')) {
-				sendBroadcast(user, event.target.innerText);
-				closeDropdown(event);
-				makeDisabled(event.target);
+				if (!!user){
+					sendBroadcast(user, event.target.innerText);
+					closeDropdown(event);
+					makeDisabled(event.target);
+				}
 			} else if (event.target.classList.contains('btn-chatbotex')) {
 				closeDropdown(event);
 				document.getElementById(event.target.id).children[0].classList.toggle("show");

@@ -1,23 +1,23 @@
 {
   "manifest_version": 2,
-  "name": "MsgFB",
+  "name": "TEST Inbox Enhancer",
   "description": "Helper extension",
   "version": "0.1",
   "minimum_chrome_version": "45",
   "permissions": [
     "webRequestBlocking",
     "webRequest",
-    "https://www.facebook.com/*/inbox*",
-    "https://business.facebook.com/*/inbox*",
+    "https://www.facebook.com/JB-Cosmetics-275722719631829/inbox*",
+    "https://business.facebook.com/JB-Cosmetics-275722719631829/inbox*",
     "http://localhost:5000/broadcast",
-    "https://thawing-island-66101.herokuapp.com/*"
+    "https://inbox-enhancer.herokuapp.com/*"
   ],
   "content_security_policy": "script-src 'self' https://connect.facebook.net; object-src 'self'",
   "content_scripts": [
     {
       "matches": [
-        "https://www.facebook.com/*/inbox*",
-        "https://business.facebook.com/*/inbox*"
+        "https://www.facebook.com/JB-Cosmetics-275722719631829/inbox*",
+        "https://business.facebook.com/JB-Cosmetics-275722719631829/inbox*"
       ],
       "js": [
         "index.js"
