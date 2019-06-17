@@ -128,7 +128,7 @@
 	}
 
 	function closeDropdown(event) {
-		let dropdowns = document.getElementsByClassName("dropdown-content");
+		let dropdowns = document.getElementsByClassName('dropdown-content');
 		for (let i = 0; i < dropdowns.length; i++) {
 			var openDropdown = dropdowns[i];
 			if (openDropdown.classList.contains('show')) {
@@ -159,10 +159,12 @@
 					sendBroadcast(user, event.target.innerText);
 					closeDropdown(event);
 					makeDisabled(event.target);
+				} else {
+					alert('There is no user selected. Please click on one of the users on the left')
 				}
 			} else if (event.target.classList.contains('btn-chatbotex')) {
 				closeDropdown(event);
-				document.getElementById(event.target.id).children[0].classList.toggle("show");
+				document.getElementById(event.target.id).children[0].classList.toggle('show');
 			} else {
 				closeDropdown(event);
 			}
