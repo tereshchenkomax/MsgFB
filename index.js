@@ -26,7 +26,7 @@
 					//handle errors in the way you want to
 					switch (response.status) {
 						case 404:
-							console.log('404 - PSID has not found in the Database');
+							console.log('404 - PSID has not found in the Database)');
 							//TODO change the color or smth
 							break;
 						case 400:
