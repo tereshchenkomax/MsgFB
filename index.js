@@ -2,9 +2,25 @@
 
 	var user;
 
+	function sendUserOnly() {
+		const url = 'https://inbox-enhancer.herokuapp.com/user';//TODO check the URI
+		// const url = 'http://localhost:5000/user';
+		console.log(user);
+		fetch(url, {
+			method: "POST",
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				"pageid": user
+			})
+		}).then(res=>console.log('res: ', res)).catch(e => console.log(e))
+	}
+
 	function sendBroadcast(user, blockname) {
 		const url = 'https://inbox-enhancer.herokuapp.com/broadcast';//TODO check the URI
-		// const url = 'http://localhost:5000';
+		// const url = 'http://localhost:5000/broadcast';
 		console.log(user, blockname);
 		fetch(url, {
 			method: "POST",
@@ -114,20 +130,20 @@
 	}
 
 	function makeDisabled(element) {
-		if (element.className === 'dropdown-link'){
+		if (element.className === 'dropdown-link') {
 			element.setAttribute('class', 'dropdown-sent');
 			setTimeout(() => {
-					element.setAttribute('class', 'dropdown-link');
-				}, 1500);
+				element.setAttribute('class', 'dropdown-link');
+			}, 1500);
 		} else {
 			element.setAttribute('class', 'disabled');
 			setTimeout(() => {
-					element.setAttribute('class', 'btn-area');
-				}, 1500);
+				element.setAttribute('class', 'btn-area');
+			}, 1500);
 		}
 	}
 
-	function closeDropdown(event) {
+	function closeDropdown() {
 		let dropdowns = document.getElementsByClassName('dropdown-content');
 		for (let i = 0; i < dropdowns.length; i++) {
 			var openDropdown = dropdowns[i];
@@ -144,7 +160,7 @@
 			if (request.message === 'hello!') {
 				const urlParams = new URLSearchParams(request.url);
 				user = urlParams.get('selected_item_id');
-				console.log(user)
+				sendUserOnly(user)
 			}
 		});
 
@@ -155,7 +171,7 @@
 
 		area.addEventListener('click', event => {
 			if (event.target.classList.contains('dropdown-link') || event.target.classList.contains('btn-area')) {
-				if (!!user){
+				if (!!user) {
 					sendBroadcast(user, event.target.innerText);
 					closeDropdown(event);
 					makeDisabled(event.target);

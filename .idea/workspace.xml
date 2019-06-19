@@ -22,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1676">
-              <caret line="9" column="21" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="21" />
+            <state relative-caret-position="255">
+              <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -32,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/background.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -74,7 +74,7 @@
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="802" />
+    <option name="height" value="803" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -169,12 +169,22 @@
       <workItem from="1559041643687" duration="103000" />
       <workItem from="1559908996964" duration="1119000" />
       <workItem from="1560622191998" duration="645000" />
-      <workItem from="1560787173950" duration="192000" />
+      <workItem from="1560787173950" duration="332000" />
+      <workItem from="1560844704201" duration="710000" />
+      <workItem from="1560926650182" duration="1295000" />
     </task>
+    <task id="LOCAL-00001" summary="test thru interface">
+      <created>1560844740083</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1560844740083</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51475000" />
+    <option name="totallyTimeSpent" value="53620000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -189,7 +199,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.24242425" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.24242425" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50089765" side_tool="true" weight="0.24242425" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -201,8 +211,8 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.2626506" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4989429" visible="true" weight="0.23012048" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010571" side_tool="true" weight="0.20240964" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -210,6 +220,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test thru interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="test thru interface" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Messenger.js" />
@@ -254,14 +268,14 @@
     <entry file="file://$PROJECT_DIR$/background.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1676">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="21" />
+        <state relative-caret-position="255">
+          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
         </state>
       </provider>
     </entry>
